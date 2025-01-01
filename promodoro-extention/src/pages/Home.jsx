@@ -197,11 +197,7 @@ const Home = ({ userId, isDarkMode }) => {
   return (
     <div className=" ">
       <div
-        className={`w-full max-w-full px-8 pb-2 rounded-lg ${
-          isDarkMode
-            ? "bg-blue-950 text-white shadow-xl shadow-blue-900"
-            : "bg-slate-200 text-black shadow-lg shadow-gray-400"
-        } relative`}
+        className={`w-full max-w-full px-8 pb-2 rounded-lg relative`}
       >
 <div className="flex space-x-16">
 <div className="mt-4 ">

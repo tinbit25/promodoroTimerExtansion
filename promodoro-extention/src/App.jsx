@@ -61,10 +61,10 @@ const App = () => {
 
   return (
     <div
-      className={`w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
-      }`}
-    >
+  className={`border-7 border-white bottom-8 w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
+    isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+  }`}
+>
       {/* Header */}
       <Header
         isDarkMode={isDarkMode}

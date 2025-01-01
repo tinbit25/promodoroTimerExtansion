@@ -46,11 +46,11 @@ const Header = ({
   };
 
   return (
-    <header className="z-10 flex items-center justify-between px-4 py-2 border-b">
+    <header className="z-10 flex items-center justify-between px-4 py-2 ">
       <h1 className="text-xl font-bold">
         <Link className="flex" to="/">
           <img className="rounded-full" src={logo} alt="Pomodoro Timer Logo" />
-          <h6 className="pt-2">Pomodoro Timer</h6>
+          <h6 className="pt-2">FocusUp</h6>
         </Link>
       </h1>
       <div className="flex items-center space-x-4">
