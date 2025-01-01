@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import logo from "../../public/icon1.png";
+import logo from "../../public/logo.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun } from '@fortawesome/free-regular-svg-icons';
+
+import { faMoon } from '@fortawesome/free-regular-svg-icons';
 
 const Header = ({
   isDarkMode,
@@ -46,11 +50,11 @@ const Header = ({
   };
 
   return (
-    <header className="z-10 flex items-center justify-between px-4 py-2 ">
+    <header className="-my-6 z-10 flex items-center justify-between px-4">
       <h1 className="text-xl font-bold">
         <Link className="flex" to="/">
           <img className="rounded-full" src={logo} alt="Pomodoro Timer Logo" />
-          <h6 className="pt-2">FocusUp</h6>
+          
         </Link>
       </h1>
       <div className="flex items-center space-x-4">
@@ -60,7 +64,12 @@ const Header = ({
           }`}
           onClick={toggleTheme}
         >
-          {isDarkMode ? "🌙" : "☀️"}
+         { isDarkMode ? <FontAwesomeIcon icon={faMoon} style={{ color: 'rgb(102, 231, 231)' }} />
+
+ 
+ : <FontAwesomeIcon icon={faSun} style={{ color: 'rgb(102, 231, 231)' }} />
+}
+
         </button>
         {isLoggedIn ? (
           <div className="relative">

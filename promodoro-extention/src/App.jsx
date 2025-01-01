@@ -61,8 +61,8 @@ const App = () => {
 
   return (
     <div
-  className={`border-7 border-white bottom-8 w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
-    isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
+  className={`m-2 overflow-hidden  border-7 border-white bottom-8 w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
+    isDarkMode ? "bg-gray-900  border-light-cyan border-4 text-white" : "border-light-cyan border-4 bg-white text-gray-900"
   }`}
 >
       {/* Header */}
