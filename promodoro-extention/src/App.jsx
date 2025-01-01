@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./components/Header";
+import ParticleBackground from "./components/ParticleBackground";
 import Home from "./pages/Home";
 import Status from "./pages/StatusPage";
 import Login from "./pages/Login";
@@ -60,11 +61,14 @@ const App = () => {
   };
 
   return (
-    <div
-  className={`m-2 overflow-hidden  border-7 border-white bottom-8 w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
-    isDarkMode ? "bg-gray-900  border-light-cyan border-4 text-white" : "border-light-cyan border-4 bg-white text-gray-900"
+   <div
+  className={`m-2 overflow-hidden border border-light-cyan w-96 h-full flex flex-col rounded-xl transition-colors duration-300 ${
+    isDarkMode
+      ? "bg-gray-900 text-white"
+      : "bg-gradient-to-r from-pink-200 via-purple-300 to-indigo-300 bg-opacity-60 backdrop-blur-lg text-gray-900"
   }`}
 >
+    
       {/* Header */}
       <Header
         isDarkMode={isDarkMode}

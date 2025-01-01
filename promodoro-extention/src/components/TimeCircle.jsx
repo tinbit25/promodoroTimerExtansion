@@ -17,7 +17,7 @@ const TimeCircle = ({ duration, isRunning, resetSignal, isDarkMode }) => {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  const circleSize = "250px"; 
+  const circleSize = "250px"; // Size of the circle
 
   return (
     <div
@@ -26,27 +26,34 @@ const TimeCircle = ({ duration, isRunning, resetSignal, isDarkMode }) => {
         width: circleSize,
         height: circleSize,
         border: "8px solid",
-        borderColor: isRunning ? "#0284c7" : "rgba(200, 200, 200, 0.5)", 
+        borderColor: isRunning
+          ? isDarkMode
+            ? "#4ADE80" // Dark mode green color
+            : "#0284c7"  // Light mode blue color
+          : isDarkMode
+          ? "rgba(200, 200, 200, 0.5)" // Dark mode background border
+          : "rgba(156, 163, 175, 0.5)", // Light mode background border
         background: isRunning
-          ? "radial-gradient(circle, rgba(2, 132, 199, 0.4) 0%, rgba(59, 130, 246, 0.1) 70%)"
+          ? isDarkMode
+            ? "radial-gradient(circle, rgba(72, 187, 120, 0.4) 0%, rgba(10, 158, 75, 0.1) 70%)"
+            : "radial-gradient(circle, rgba(2, 132, 199, 0.4) 0%, rgba(59, 130, 246, 0.1) 70%)"
+          : isDarkMode
+          ? "radial-gradient(circle, rgba(209, 213, 219, 0.4) 0%, rgba(156, 163, 175, 0.1) 70%)"
           : "radial-gradient(circle, rgba(209, 213, 219, 0.4) 0%, rgba(156, 163, 175, 0.1) 70%)", 
         boxShadow: isRunning
-          ? "0 4px 20px rgba(2, 132, 199, 0.3)"
-          : "0 4px 20px rgba(156, 163, 175, 0.3)", 
+          ? isDarkMode
+            ? "0 4px 20px rgba(72, 187, 120, 0.3)"
+            : "0 4px 20px rgba(2, 132, 199, 0.3)"
+          : isDarkMode
+          ? "0 4px 20px rgba(156, 163, 175, 0.3)"
+          : "0 4px 20px rgba(156, 163, 175, 0.3)"
       }}
     >
       <span
-  className={`font-bold text-5xl transition-colors duration-300 ease-in-out ${
-    isDarkMode
-      ? "text-white"
-      : isRunning
-      ? "text-green-300" 
-      : "text-green-300" // Replace "#334155" with equivalent Tailwind class
-  }`}
->
-  {formatTime(timeLeft)}
-</span>
-
+        className={`font-bold text-5xl transition-colors duration-300 ease-in-out ${isDarkMode ? "text-white" : isRunning ? "text-green-300" : "text-gray-900"}`}
+      >
+        {formatTime(timeLeft)}
+      </span>
     </div>
   );
 };
