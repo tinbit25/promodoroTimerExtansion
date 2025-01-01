@@ -59,7 +59,7 @@ const Login = ({ onLoginSuccess }) => {
       >
         <Input icon={Mail} type="email" placeholder="Email Address" name="email" required />
         <Input icon={Lock} type="password" placeholder="Password" name="password" required />
-        <Link to="/forgot-password" className="text-green-400 hover:underline mb-3">
+        <Link to="/forgot-password" className="text-light-cyan  hover:underline mb-3">
           Forgot Password?
         </Link>
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
@@ -74,7 +74,7 @@ const Login = ({ onLoginSuccess }) => {
       <div className="flex px-8 py-4 bg-gray-900 justify-center">
         <p className="text-sm text-gray-400">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-green-400 hover:underline">
+          <Link to="/signup" className="text-light-cyan  hover:underline">
             Sign Up
           </Link>
         </p>

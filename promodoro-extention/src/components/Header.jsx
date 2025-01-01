@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../../public/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun } from '@fortawesome/free-regular-svg-icons';
-
-import { faMoon } from '@fortawesome/free-regular-svg-icons';
+import { faSun, faMoon, faEllipsisV } from '@fortawesome/free-solid-svg-icons'; // Add the faEllipsisV icon
 
 const Header = ({
   isDarkMode,
@@ -54,7 +52,6 @@ const Header = ({
       <h1 className="text-xl font-bold">
         <Link className="flex" to="/">
           <img className="rounded-full" src={logo} alt="Pomodoro Timer Logo" />
-          
         </Link>
       </h1>
       <div className="flex items-center space-x-4">
@@ -64,25 +61,20 @@ const Header = ({
           }`}
           onClick={toggleTheme}
         >
-         { isDarkMode ? <FontAwesomeIcon icon={faMoon} style={{ color: 'rgb(102, 231, 231)' }} />
-
- 
- : <FontAwesomeIcon icon={faSun} style={{ color: 'rgb(102, 231, 231)' }} />
-}
-
+          {isDarkMode ? (
+            <FontAwesomeIcon icon={faMoon} style={{ color: 'rgb(102, 231, 231)' }} />
+          ) : (
+            <FontAwesomeIcon icon={faSun} style={{ color: 'rgb(102, 231, 231)' }} />
+          )}
         </button>
         {isLoggedIn ? (
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu((prev) => !prev)}
-              className="rounded-full w-10 h-10 overflow-hidden border border-gray-300 dark:border-gray-600"
+              className="w-10 h-10 flex justify-center items-center "
               aria-label="Open Profile Menu"
             >
-              <img
-                src={userProfile?.avatar || "https://i.pravatar.cc/300"} 
-                alt="User Profile"
-                className="w-full h-full object-cover"
-              />
+              <FontAwesomeIcon icon={faEllipsisV} style={{ color: isDarkMode ? '#fff' : '#333' }} />
             </button>
 
             {/* Dropdown Menu */}
@@ -102,7 +94,7 @@ const Header = ({
           </div>
         ) : (
           <button
-            className="px-3 py-1 bg-green-500 text-white rounded"
+            className="px-3 py-1 bg-transparent border text-light-cyan  text-white rounded"
             onClick={() => navigate("/login")} 
           >
             Login
