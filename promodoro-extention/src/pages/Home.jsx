@@ -206,14 +206,14 @@ const Home = ({ userId, isDarkMode }) => {
             placeholder="Purpose of use (e.g., work, study)"
             value={purpose}
             onChange={(e) => setPurpose(e.target.value)}
-            className={` ${isDarkMode
-            ? "bg-blue-950 text-white shadow-xl"
-            : "bg-slate-200 text-black shadow-lg"} border p-2 rounded mb-5`}
+            className={`  ${isDarkMode
+            ? "-m-6 bg-blue-950 text-white shadow-xl"
+            : "-m-6 bg-transparent text-black shadow-lg"} border p-2 rounded mb-5`}
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-end ">
           <button
-            className="text-2xl p-2 rounded-full"
+            className="text-2xl -mr-20 rounded-full"
             onClick={() => setIsSettingsOpen(true)}
           >
             <FaCog />
