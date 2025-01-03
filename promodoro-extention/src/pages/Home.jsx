@@ -199,27 +199,29 @@ const Home = ({ userId, isDarkMode }) => {
       <div
         className={`w-full max-w-full px-8 pb-2 rounded-lg relative`}
       >
-<div className="flex space-x-16">
-<div className="mt-4 ">
-          <input
-            type="text"
-            placeholder="Purpose of use (e.g., work, study)"
-            value={purpose}
-            onChange={(e) => setPurpose(e.target.value)}
-            className={`  ${isDarkMode
-            ? "-m-6 bg-blue-950 text-white shadow-xl"
-            : "-m-6 bg-transparent text-black shadow-lg"} border p-2 rounded mb-5`}
-          />
-        </div>
-        <div className="flex justify-end ">
-          <button
-            className="text-2xl -mr-20 rounded-full"
-            onClick={() => setIsSettingsOpen(true)}
-          >
-            <FaCog />
-          </button>
-        </div>
-        </div>
+
+  <div className="mt-4">
+    <input
+      type="text"
+      placeholder="Purpose of use (e.g., work, study)"
+      value={purpose}
+      onChange={(e) => setPurpose(e.target.value)}
+      className={` ${isDarkMode
+        ? "-m-6 bg-blue-950 text-white shadow-xl"
+        : "-m-6 bg-transparent text-black shadow-lg"} border p-2 rounded mb-5`}
+    />
+  </div>
+
+  {/* Settings button in the upper-right corner */}
+  <div className="absolute -top-10 right-4">
+    <button
+      className="text-1xl pr-3 rounded-full text-gray-600"
+      onClick={() => setIsSettingsOpen(true)}
+    >
+      <FaCog />
+    </button>
+  </div>
+
 
         <div className="flex space-x-6 mb-8 justify-center">
           {tabsData.map((tab) => (
