@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../../public/logo.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faEllipsisV } from '@fortawesome/free-solid-svg-icons'; // Add the faEllipsisV icon
+import { faSun, faMoon, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({
   isDarkMode,
@@ -55,23 +55,29 @@ const Header = ({
         </Link>
       </h1>
       <div className="flex items-center space-x-4">
-        <button
-          className={`px-3 py-1 bg-transparent text-2xl ${
-            isDarkMode ? "bg-gray-800 text-white" : "bg-gray-200"
-          }`}
-          onClick={toggleTheme}
-        >
-          {isDarkMode ? (
-            <FontAwesomeIcon icon={faMoon} style={{ color: 'rgb(102, 231, 231)' }} />
-          ) : (
-            <FontAwesomeIcon icon={faSun} style={{ color: 'rgb(102, 231, 231)' }} />
-          )}
-        </button>
+      <label className="flex items-center cursor-pointer">
+  <div className="relative">
+    <input
+      type="checkbox"
+      className="hidden"
+      onChange={toggleTheme}
+      checked={isDarkMode}
+    />
+    <div className={`block  opacity-30 w-8 h-4 rounded-full ${
+        isDarkMode ? 'bg-slate-400' : 'bg-light-cyan'
+      }`}></div>
+    <div
+      className={`dot top-0 absolute w-4 h-4 rounded-full shadow-md transition-transform ${
+        isDarkMode ? 'bg-lime-700 transform translate-x-4' : 'bg-white transform translate-x-0'
+      }`}
+    ></div>
+  </div>
+</label>
         {isLoggedIn ? (
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu((prev) => !prev)}
-              className="w-10 h-10 flex justify-center items-center "
+              className="w-10 h-10 flex justify-center items-center"
               aria-label="Open Profile Menu"
             >
               <FontAwesomeIcon icon={faEllipsisV} style={{ color: isDarkMode ? '#fff' : '#333' }} />
@@ -94,7 +100,7 @@ const Header = ({
           </div>
         ) : (
           <button
-            className="px-3 py-1 bg-transparent border text-light-cyan  text-white rounded"
+            className="px-3 py-1 bg-transparent border text-light-cyan text-white rounded"
             onClick={() => navigate("/login")} 
           >
             Login

@@ -213,12 +213,12 @@ const Home = ({ userId, isDarkMode }) => {
   </div>
 
   {/* Settings button in the upper-right corner */}
-  <div className="absolute -top-10 right-4">
+  <div className="">
     <button
       className="text-1xl pr-3 rounded-full text-gray-600"
       onClick={() => setIsSettingsOpen(true)}
     >
-      <FaCog />
+      <FaCog className="absolute z-10 -mt-[140px] ml-60 " />
     </button>
   </div>
 
