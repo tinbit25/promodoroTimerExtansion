@@ -100,7 +100,7 @@ const App = () => {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/status" element={<Status sessionData={sessionData} />} />
+          <Route path="/status" element={<Status sessionData={sessionData} isDarkMode={isDarkMode}  />} />
         </Routes>
       </main>
     </div>
