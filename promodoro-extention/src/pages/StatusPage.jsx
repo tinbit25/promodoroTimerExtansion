@@ -59,7 +59,7 @@ const StatusPage = ({ isDarkMode }) => {
   }
 
   return (
-    <div className={`p-8 ${isDarkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
+    <div className={`p-8 ${isDarkMode ? " text-white" : " text-black"}`}>
       {error && <div className="p-4 text-red-500">{error}</div>} {/* Inline error message */}
 
       {sessions.length === 0 && !error && (
