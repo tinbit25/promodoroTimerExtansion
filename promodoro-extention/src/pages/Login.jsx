@@ -4,7 +4,7 @@ import { Loader, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
 
-const Login = ({ onLoginSuccess }) => {
+const Login = ({ onLoginSuccess, isDarkMode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -44,23 +44,27 @@ const Login = ({ onLoginSuccess }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md w-full bg-gray-800 bg-opacity-80 rounded-2xl shadow-lg p-8 mx-auto mt-10"
+      className={`max-w-md w-full rounded-2xl shadow-xl p-8 mx-auto my-20 ${
+        isDarkMode ? "bg-gray-800 bg-opacity-50" : "bg-white bg-opacity-10"
+      }`}
     >
-      <h2 className="text-lg font-bold text-green-400 text-center mb-4">Welcome Back</h2>
+      <h2 className={`text-lg font-bold text-center mb-4 ${isDarkMode ? "text-light-cyan" : "text-gray-900"}`}>
+        Welcome Back
+      </h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleLogin(e.target.email.value, e.target.password.value);
         }}
       >
-        <Input icon={Mail} type="email" placeholder="Email Address" name="email" required />
-        <Input icon={Lock} type="password" placeholder="Password" name="password" required />
-        <Link to="/forgot-password" className="text-green-400 hover:underline mb-3">
+        <Input type="email" placeholder="Email Address" name="email" required isDarkMode={isDarkMode} />
+        <Input type="password" placeholder="Password" name="password" required isDarkMode={isDarkMode} />
+        <Link to="/forgot-password" className={`text-light-cyan hover:underline mb-3 ${isDarkMode ? "text-light-cyan" : "text-gray-700"}`}>
           Forgot Password?
         </Link>
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
         <motion.button
-          className="w-full p-3 rounded-lg font-bold bg-green-500 hover:bg-green-700 transition duration-200"
+          className="w-full p-3 rounded-lg font-bold bg-green-400 hover:bg-green-500 transition duration-200"
           type="submit"
           disabled={isLoading}
         >
@@ -68,9 +72,9 @@ const Login = ({ onLoginSuccess }) => {
         </motion.button>
       </form>
       <div className="flex px-8 py-4 justify-center">
-        <p className="text-sm text-gray-400">
+        <p className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-700"}`}>
           Don't have an account?{" "}
-          <Link to="/signup" className="text-green-400 hover:underline">
+          <Link to="/signup" className={`text-light-cyan hover:underline ${isDarkMode ? "text-light-cyan" : "text-blue-600"}`}>
             Sign Up
           </Link>
         </p>

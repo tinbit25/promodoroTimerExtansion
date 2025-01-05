@@ -11,7 +11,7 @@ import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   const [userId, setUserId] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [sessionData, setSessionData] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -89,14 +89,14 @@ const App = () => {
               />
             }
           />
-          <Route
-            path="/signup"
-            element={<Signup onSignupSuccess={handleSignupSuccess} />}
-          />
-          <Route
-            path="/login"
-            element={<Login onLoginSuccess={handleLoginSuccess} />}
-          />
+         <Route
+  path="/signup"
+  element={<Signup onSignupSuccess={handleSignupSuccess} isDarkMode={isDarkMode} />}
+/>
+<Route
+  path="/login"
+  element={<Login onLoginSuccess={handleLoginSuccess} isDarkMode={isDarkMode} />}
+/>
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/logout" element={<Logout />} />

@@ -47,7 +47,7 @@ const ForgotPassword = () => {
       transition={{ duration: 0.5 }}
       className="max-w-md w-full bg-gray-700 bg-opacity-50 rounded-2xl backdrop-filter backdrop-blur-xl shadow-xl overflow-hidden p-8 mx-auto mt-10"
     >
-      <h2 className="text-lg font-bold text-green-950 text-center mb-4">Forgot Password</h2>
+      <h2 className="text-lg font-bold text-light-cyan text-center mb-4">Forgot Password</h2>
       <form onSubmit={handleForgotPassword}>
         <Input
           icon={Mail}
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
           {isLoading ? <Loader className="w-6 h-6 animate-spin mx-auto" /> : "Send Reset Link"}
         </motion.button>
       </form>
-      <div className="flex px-8 py-4 bg-gray-900 bg-opacity-50 justify-center">
+      <div className="flex px-8 py-4 justify-center">
         <p className="text-sm text-gray-400">
           Remembered your password?{" "}
           <Link to="/login" className="text-green-400 hover:underline">

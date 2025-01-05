@@ -4,7 +4,7 @@ import { Loader, UserPlus, Mail, Lock } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
-const Signup = ({ onSignupSuccess }) => {
+const Signup = ({ onSignupSuccess, isDarkMode }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -42,23 +42,27 @@ const Signup = ({ onSignupSuccess }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md w-full bg-gray-800 bg-opacity-80 rounded-2xl backdrop-filter backdrop-blur-xl shadow-lg overflow-hidden p-8 mx-auto mt-10"
+      className={`max-w-md w-full rounded-2xl shadow-xl overflow-hidden p-8 mx-auto mt-10 ${
+        isDarkMode ? "bg-gray-800 bg-opacity-50" : "bg-white bg-opacity-10"
+      }`}
     >
-      <h2 className="text-lg font-bold text-green-400 text-center mb-4">Create an Account</h2>
+      <h2 className={`text-lg font-bold text-center mb-4 ${isDarkMode ? "text-light-cyan" : "text-gray-900"}`}>
+        Create an Account
+      </h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSignup(e.target.name.value, e.target.email.value, e.target.password.value);
         }}
       >
-        <Input icon={UserPlus} label="Full Name" type="text" placeholder="Full Name" name="name" required />
-        <Input icon={Mail} label="Email Address" type="email" placeholder="Email Address" name="email" required />
-        <Input icon={Lock} label="Password" type="password" placeholder="Password" name="password" required />
+        <Input type="text" placeholder="Full Name" name="name" required isDarkMode={isDarkMode} />
+        <Input type="email" placeholder="Email Address" name="email" required isDarkMode={isDarkMode} />
+        <Input type="password" placeholder="Password" name="password" required isDarkMode={isDarkMode} />
 
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
 
         <motion.button
-          className="w-full m-3 p-3 rounded-lg font-bold bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 transition duration-200"
+          className="w-full m-3 p-3 rounded-lg font-bold bg-green-500 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
           type="submit"
           disabled={isLoading}
         >
@@ -67,9 +71,9 @@ const Signup = ({ onSignupSuccess }) => {
       </form>
 
       <div className="flex px-8 justify-center">
-        <p className="text-sm text-gray-400">
+        <p className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-700"}`}>
           Already have an account?{" "}
-          <Link to="/login" className="text-green-400 hover:underline">
+          <Link to="/login" className={`text-green-400 hover:underline ${isDarkMode ? "text-light-cyan" : "text-blue-600"}`}>
             Login
           </Link>
         </p>
