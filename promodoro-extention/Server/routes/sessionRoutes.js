@@ -37,38 +37,32 @@ router.post('/saveSessionData', async (req, res) => {
 router.get('/history', async (req, res) => {
   const { userId } = req.query;
 
-  // Validate userId
   if (!userId) {
-    return res.status(400).json({ success: false, message: 'User  ID is required' });
+    return res.status(400).json({ success: false, message: 'User ID is required' });
   }
 
   try {
-    
     const userObjectId = new mongoose.Types.ObjectId(userId);
-
-    
-    const sessions = await Session.find({ userId: userObjectId }).sort({ createdAt: -1 });
+    const sessions = await Session.find({ userId: userObjectId });
 
     if (!sessions || sessions.length === 0) {
       return res.status(404).json({ success: false, message: 'No session history found' });
     }
 
-    // Format session data
-    const formattedSessions = sessions.map(session => ({
-      id: session._id,
-      tab: session.tab,
-      focusTime: session.focusTime,
-      shortBreak: session.shortBreak,
-      longBreak: session.longBreak,
-      cycleCount: session.cycleCount,
-      completionTime: session.createdAt ? session.createdAt.toISOString() : null,
-    }));
+    // Calculate aggregated statistics
+    const totals = sessions.reduce((acc, session) => {
+      acc.focusTime += session.focusTime || 0;
+      acc.shortBreak += session.shortBreak || 0;
+      acc.longBreak += session.longBreak || 0;
+      acc.completedSessions += 1;
+      acc.purpose[session.tab || "General"] = (acc.purpose[session.tab || "General"] || 0) + 1;
+      return acc;
+    }, { focusTime: 0, shortBreak: 0, longBreak: 0, completedSessions: 0, purpose: {} });
 
-    res.status(200).json({ success: true, sessions: formattedSessions });
+    res.status(200).json({ success: true, totals, sessions });
   } catch (error) {
-    console.error("Error fetching session history:", error); // Log the error for debugging
+    console.error("Error fetching session history:", error);
     res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
   }
 });
-
 module.exports = router;

@@ -5,6 +5,7 @@ const StatusPage = ({ isDarkMode }) => {
   const [sessions, setSessions] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [totals, setTotals] = useState({ focusTime: 0, shortBreak: 0, longBreak: 0, completedSessions: 0, purpose: {} });
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -31,6 +32,7 @@ const StatusPage = ({ isDarkMode }) => {
         const data = await response.json();
         if (data.success) {
           setSessions(data.sessions);
+          setTotals(data.totals); // Set aggregated totals
         } else {
           throw new Error(data.message || "Failed to fetch session history");
         }
@@ -48,50 +50,33 @@ const StatusPage = ({ isDarkMode }) => {
   if (loading) {
     return (
       <div className={`p-8 ${isDarkMode ? "text-white" : "text-black"} flex justify-center items-center h-screen`}>
-        <TailSpin
-          height={80}
-          width={80}
-          color={isDarkMode ? "#ffffff" : "#000000"}
-          ariaLabel="loading"
-        />
+        <TailSpin height={80} width={80} color={isDarkMode ? "#ffffff" : "#000000"} ariaLabel="loading" />
       </div>
     );
   }
 
   return (
-    <div className={`p-8 ${isDarkMode ? " text-white" : " text-black"}`}>
-      {error && <div className="p-4 text-red-500">{error}</div>} {/* Inline error message */}
+    <div className={`p-8 ${isDarkMode ? "text-white" : "text-black"}`}>
+      {error && <div className="p-4 text-red-500">{error}</div>}
 
-      {sessions.length === 0 && !error && (
-        <div className="p-8">No session history available.</div>
-      )}
+      {sessions.length === 0 && !error && <div className="p-8">No session history available.</div>}
 
       {sessions.length > 0 && (
         <>
-          <h2 className="text-2xl font-bold mb-4">Aggregated Totals by Purpose</h2>
+          <h2 className="text-2xl font-bold mb-4">User Statistics</h2>
+          <div className={`p-4 rounded shadow ${isDarkMode ? "bg-gray-800" : "bg-gray-100"}`}>
+            <h3 className="text-lg font-bold mb-2">Total Focus Time: {formatTime(totals.focusTime)}</h3>
+            <h3 className="text-lg font-bold mb-2">Total Short Break: {formatTime(totals.shortBreak)}</h3>
+            <h3 className="text-lg font-bold mb-2">Total Long Break: {formatTime(totals.longBreak)}</h3>
+            <h3 className="text-lg font-bold mb-2">Completed Sessions: {totals.completedSessions}</h3>
+          </div>
+
+          <h2 className="text-2xl font-bold mb-4">Session Breakdown by Purpose</h2>
           <div className="space-y-4">
-            {Object.keys(sessions.reduce((acc, session) => {
-              const purpose = session.tab || "General"; // Use "General" if the purpose is missing
-              if (!acc[purpose]) {
-                acc[purpose] = {
-                  focusTime: 0,
-                  shortBreak: 0,
-                  longBreak: 0,
-                };
-              }
-              acc[purpose].focusTime += session.focusTime || 0;
-              acc[purpose].shortBreak += session.shortBreak || 0;
-              acc[purpose].longBreak += session.longBreak || 0;
-              return acc;
-            }, {})).map((purpose) => (
-              <div
-                key={purpose}
-                className={`p-4 rounded shadow ${isDarkMode ? "bg-gray-800" : "bg-gray-100"}`}
-              >
+            {Object.keys(totals.purpose).map((purpose) => (
+              <div key={purpose} className={`p-4 rounded shadow ${isDarkMode ? "bg-gray-800" : "bg-gray-100"}`}>
                 <h3 className="text-lg font-bold mb-2">{purpose}</h3>
-                <p>Focus Time: {formatTime(sessions.find(s => (s.tab || "General") === purpose).focusTime || 0)}</p>
-                <p>Short Break: {formatTime(sessions.find(s => (s.tab || "General") === purpose).shortBreak || 0)}</p>
-                <p>Long Break: {formatTime(sessions.find(s => (s.tab || "General") === purpose).longBreak || 0)}</p>
+                <p>Sessions Completed: {totals.purpose[purpose]}</p>
               </div>
             ))}
           </div>
