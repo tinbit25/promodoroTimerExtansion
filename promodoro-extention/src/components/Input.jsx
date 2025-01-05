@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react'; 
+import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 const Input = ({ icon: Icon, label, type, onToggleVisibility, ...props }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(type === 'password' ? false : true);
@@ -18,28 +18,32 @@ const Input = ({ icon: Icon, label, type, onToggleVisibility, ...props }) => {
           {label}
         </label>
       )}
-      <div className='absolute inset-y-0 left-0 flex items-center pl-3'>
-        {Icon && <Icon className="w-5 h-5 text-green-500" />}
+      <div className='flex items-center border border-gray-600 bg-gray-800 rounded-lg'>
+        {Icon && (
+          <div className='flex items-center pl-3'>
+            <Icon className="w-5 h-5 text-green-200" />
+          </div>
+        )}
+        <input
+          {...props}
+          id={props.name}
+          type={isPasswordVisible ? 'text' : type}
+          className='w-full py-3 pl-0 pr-10 bg-transparent rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500'
+        />
+        {type === 'password' && (
+          <button
+            type="button"
+            className="absolute inset-y-0 right-3 flex items-center justify-center h-full"
+            onClick={handleToggleVisibility}
+          >
+            {isPasswordVisible ? (
+              <EyeOff className="w-5 h-5 text-gray-400" />
+            ) : (
+              <Eye className="w-5 h-5 text-gray-400" />
+            )}
+          </button>
+        )}
       </div>
-      <input
-        {...props}
-        id={props.name}
-        type={isPasswordVisible ? 'text' : 'password'}
-        className='w-full pl-10 py-3 bg-gray-800 rounded-lg focus:border-green-500 focus:ring-2 focus:ring-green-500 text-white placeholder-gray-400 transition duration-200'
-      />
-      {type === 'password' && (
-        <button
-          type="button"
-          className="absolute inset-y-0 right-3 flex items-center"
-          onClick={handleToggleVisibility}
-        >
-          {isPasswordVisible ? (
-            <EyeOff className="w-5 h-5 py-2 text-gray-400" />
-          ) : (
-            <Eye className="w-5 h-5 py-2 text-gray-400" />
-          )}
-        </button>
-      )}
     </div>
   );
 };

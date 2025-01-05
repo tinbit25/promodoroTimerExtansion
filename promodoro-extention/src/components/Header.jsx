@@ -100,7 +100,7 @@ const Header = ({
           </div>
         ) : (
           <button
-            className="px-3 py-1 bg-transparent border text-light-cyan text-white rounded"
+            className="px-3 py-1 bg-gradient-to-r from-emerald-200 to-light-cyan hover:bg-gradient-to-r hover:from-green-300 hover:to-emerald-300 border text-indigo-400 rounded-tr-lg rounded-bl-lg shadow-lg"
             onClick={() => navigate("/login")} 
           >
             Login

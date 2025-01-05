@@ -20,19 +20,15 @@ const Login = ({ onLoginSuccess }) => {
       });
 
       const data = await response.json();
-      console.log("Login response data:", data); 
+      console.log("Login response data:", data);
 
       if (response.ok) {
-        
-        localStorage.setItem("user", JSON.stringify(data.user)); 
-        localStorage.setItem("token", data.token); 
-        localStorage.setItem("userId", data.user._id); 
-      
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userId", data.user._id);
 
-        console.log("User  ID stored in local storage:", data.user._id);
-      
-        
-        onLoginSuccess(data.user); 
+        console.log("User ID stored in local storage:", data.user._id);
+        onLoginSuccess(data.user);
       } else {
         setError(data.message || "Invalid credentials.");
       }
@@ -48,9 +44,9 @@ const Login = ({ onLoginSuccess }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md w-full bg-gray-700 bg-opacity-50 rounded-2xl shadow-xl p-8 mx-auto mt-10"
+      className="max-w-md w-full bg-gray-800 bg-opacity-80 rounded-2xl shadow-lg p-8 mx-auto mt-10"
     >
-      <h2 className="text-lg font-bold text-green-950 text-center mb-4">Welcome Back</h2>
+      <h2 className="text-lg font-bold text-green-400 text-center mb-4">Welcome Back</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -59,22 +55,22 @@ const Login = ({ onLoginSuccess }) => {
       >
         <Input icon={Mail} type="email" placeholder="Email Address" name="email" required />
         <Input icon={Lock} type="password" placeholder="Password" name="password" required />
-        <Link to="/forgot-password" className="text-light-cyan  hover:underline mb-3">
+        <Link to="/forgot-password" className="text-green-400 hover:underline mb-3">
           Forgot Password?
         </Link>
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
         <motion.button
-          className="w-full p-3 rounded-lg font-bold bg-green-500 hover:bg-green-900 transition duration-200"
+          className="w-full p-3 rounded-lg font-bold bg-green-500 hover:bg-green-700 transition duration-200"
           type="submit"
           disabled={isLoading}
         >
           {isLoading ? <Loader className="w-6 h-6 animate-spin mx-auto" /> : "Login"}
         </motion.button>
       </form>
-      <div className="flex px-8 py-4 bg-gray-900 justify-center">
+      <div className="flex px-8 py-4 justify-center">
         <p className="text-sm text-gray-400">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-light-cyan  hover:underline">
+          <Link to="/signup" className="text-green-400 hover:underline">
             Sign Up
           </Link>
         </p>

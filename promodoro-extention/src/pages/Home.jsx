@@ -218,7 +218,7 @@ const Home = ({ userId, isDarkMode }) => {
       className="text-1xl pr-3 rounded-full text-gray-600"
       onClick={() => setIsSettingsOpen(true)}
     >
-      <FaCog className="absolute z-10 -mt-[140px] ml-60 " />
+      <FaCog className="absolute z-10 -mt-[60px] ml-72" />
     </button>
   </div>
 

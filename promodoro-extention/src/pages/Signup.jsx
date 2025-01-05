@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Loader, UserPlus ,Mail,Lock} from "lucide-react";
+import { Loader, UserPlus, Mail, Lock } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 
@@ -31,7 +31,7 @@ const Signup = ({ onSignupSuccess }) => {
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
-      console.error(err); 
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -42,9 +42,9 @@ const Signup = ({ onSignupSuccess }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-md w-full bg-gray-700 bg-opacity-50 rounded-2xl backdrop-filter backdrop-blur-xl shadow-xl overflow-hidden p-8 mx-auto mt-10"
+      className="max-w-md w-full bg-gray-800 bg-opacity-80 rounded-2xl backdrop-filter backdrop-blur-xl shadow-lg overflow-hidden p-8 mx-auto mt-10"
     >
-      <h2 className="text-lg font-bold text-green-950 text-center mb-4">Create an Account</h2>
+      <h2 className="text-lg font-bold text-green-400 text-center mb-4">Create an Account</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -58,7 +58,7 @@ const Signup = ({ onSignupSuccess }) => {
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
 
         <motion.button
-          className="w-full m-3 p-3 rounded-lg font-bold bg-green-500 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
+          className="w-full m-3 p-3 rounded-lg font-bold bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 transition duration-200"
           type="submit"
           disabled={isLoading}
         >
@@ -66,7 +66,7 @@ const Signup = ({ onSignupSuccess }) => {
         </motion.button>
       </form>
 
-      <div className="flex px-8 py-4 bg-gray-900 bg-opacity-50 justify-center">
+      <div className="flex px-8 justify-center">
         <p className="text-sm text-gray-400">
           Already have an account?{" "}
           <Link to="/login" className="text-green-400 hover:underline">
