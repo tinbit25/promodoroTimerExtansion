@@ -218,7 +218,7 @@ const Home = ({ userId, isDarkMode }) => {
       className="text-1xl pr-3 rounded-full text-gray-600"
       onClick={() => setIsSettingsOpen(true)}
     >
-      <FaCog className="absolute z-10 -mt-[60px] ml-72" />
+      <FaCog className="absolute  -mt-[60px] ml-72" />
     </button>
   </div>
 
@@ -260,6 +260,8 @@ const Home = ({ userId, isDarkMode }) => {
               tabsData={tabsData}
               onSave={handleSaveSettings}
               onClose={() => setIsSettingsOpen(false)}
+                isDarkMode={isDarkMode}
+              
             />
           </div>
         </div>

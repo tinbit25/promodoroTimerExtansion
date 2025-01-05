@@ -62,7 +62,7 @@ const Signup = ({ onSignupSuccess, isDarkMode }) => {
         {error && <p className="text-red-500 font-semibold mb-2">{error}</p>}
 
         <motion.button
-          className="w-full m-3 p-3 rounded-lg font-bold bg-green-500 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
+          className="w-full m-3 p-3 rounded-lg font-bold bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2 focus:ring-offset-gray-900 transition duration-200"
           type="submit"
           disabled={isLoading}
         >
