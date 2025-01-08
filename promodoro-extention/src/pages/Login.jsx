@@ -44,7 +44,7 @@ const Login = ({ onLoginSuccess, isDarkMode }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`max-w-md w-full rounded-2xl shadow-xl p-8 mx-auto my-20 ${
+      className={`max-w-md w-full rounded-2xl shadow-xl p-8 mx-auto my-10 ${
         isDarkMode ? "bg-gray-800 bg-opacity-50" : "bg-white bg-opacity-10"
       }`}
     >
